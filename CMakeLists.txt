@@ -51,6 +51,9 @@ else()
   message(WARNING "Chomod not found, solving will be significantly slower than expected.")
 endif()
 
+find_package(Threads)
+set(ALLLIBS ${ALLLIBS} ${CMAKE_THREAD_LIBS_INIT})
+
 ## FILES ##########################################################################
 set(SURFACE_MESH_SRC_FILES
     otlib/surface_mesh/IO.cpp
@@ -128,3 +131,4 @@ target_link_libraries(stippling otapputils otlib ${ALLLIBS})
 
 add_executable(barycenters apps/barycenters.cpp)
 target_link_libraries(barycenters otapputils otlib ${ALLLIBS})
+
